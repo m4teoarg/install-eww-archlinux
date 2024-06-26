@@ -1,11 +1,11 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 ########## ---------- Installing Paru or yay & others ---------- ##########
 
 
 # Installing yay
 if command -v yay >/dev/null 2>&1; then
-    printf "yay is already installed\n" 
+    printf "yay is already installed\n"
 else
     printf "Installing yay\n"
     {
@@ -40,11 +40,13 @@ if command -v eww >/dev/null 2>&1; then
 else
     printf "\nInstalling Eww, this could take 10 mins or more.\n"
     {
-        sudo pacman -S rustup --noconfirm
+        sudo pacman -S rustup libdbusmenu-glib gtk-layer-shell libdbusmenu-gtk3 --noconfirm
         git clone https://github.com/elkowar/eww
         cd eww || exit
         cargo build --release --no-default-features --features x11
         sudo install -m 755 "$HOME/eww/target/release/eww" -t /usr/bin/
+        cd "$HOME" || exit
+        rm -rf {paru-bin,.cargo,.rustup,eww}
         } || {
         printf "\nFailed to install Eww. You may need to install it manually\n"
     }
