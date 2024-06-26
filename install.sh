@@ -46,7 +46,7 @@ else
         cargo build --release --no-default-features --features x11
         sudo install -m 755 "$HOME/eww/target/release/eww" -t /usr/bin/
         cd "$HOME" || exit
-        rm -rf {paru-bin,.cargo,.rustup,eww}
+        rm -rf {yay,.cargo,.rustup,eww}
         } || {
         printf "\nFailed to install Eww. You may need to install it manually\n"
     }
